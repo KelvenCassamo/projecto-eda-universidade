@@ -28,12 +28,12 @@ O sistema deve permitir a leitura de comandos de entrada e a execução de opera
 - Persistência de dados entre as execuções do sistema.
 
 ### Considerações Finais
-Este prrojecto é uma iniciativa do curso de Estruturas de Dados e Algoritmos da Faculdade de Ciências e Tecnologias de Informação da USTM. O desenvolvimento é feito em Java, utilizando práticas recomendadas de programação e estruturas de dados adequadas para garantir eficiência nas operações.
+Este projecto é uma iniciativa do curso de Estruturas de Dados e Algoritmos da Faculdade de Ciências e Tecnologias de Informação da USTM. O desenvolvimento é feito em Java, utilizando práticas recomendadas de programação e estruturas de dados adequadas para garantir eficiência nas operações.
 
 ## Como Executar o Projecto
 1. Clone o repositório: `git clone https://github.com/KelvenCassamo/projeto-eda-universidade`
-2. Abra o prrojecto no Eclipse.
+2. Abra o projecto no Netbeans.
 3. Execute a classe principal para iniciar o sistema.
 
 ## Licença
-Este prrojecto é licenciado sob a [Licença MIT](LICENSE).
+Este projecto é licenciado sob a [Licença MIT](LICENSE).
