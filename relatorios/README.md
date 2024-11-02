@@ -1,0 +1,1 @@
+# Este directório está reservado para os relatórios baseados em fases.
