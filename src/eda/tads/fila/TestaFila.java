@@ -24,6 +24,8 @@ public class TestaFila {
 		System.out.println(fila.dequeue());
 		System.out.println(fila.dequeue());
 		System.out.println(fila.dequeue());
+                
 	}
 
+        
 }

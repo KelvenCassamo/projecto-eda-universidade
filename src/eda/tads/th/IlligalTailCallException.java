@@ -1,4 +1,4 @@
-package tad.th;
+package eda.tads.th;
 
 /**
  * 

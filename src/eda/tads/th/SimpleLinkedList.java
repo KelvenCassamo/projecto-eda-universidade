@@ -1,4 +1,6 @@
-package tad.th;
+package eda.tads.th;
+
+import tad.th.IlligalHeadCallException;
 
 /**
  * 

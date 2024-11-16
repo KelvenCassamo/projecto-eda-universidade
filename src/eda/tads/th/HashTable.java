@@ -1,4 +1,9 @@
-package tad.th;
+package eda.tads.th;
+
+import eda.tads.listas.IlligalHeadCallException;
+import eda.tads.listas.IlligalTailCallException;
+import eda.tads.listas.SimpleLinkedList;
+
 /*
  * Data: 05/11/2024
  * Autores: LDS e LASIR - USTM
@@ -6,18 +11,18 @@ package tad.th;
  */
 public class HashTable<K, V> {
 
-    // classe key do par chave - valor
+    
     private record Entry<K, V>(K key, V value) {
 
         // método hash para inteiros, números de ponto-flutuante e strings
         public static <T> int rawHash(T key) {
-            if (key instanceof Integer) { // verifica se a chave é um inteiro
+            if (key instanceof Integer) { 
                 return (int) key;
-            } else if (key instanceof Double) { // verifica se a chave é um número de ponto-flutuante
+            } else if (key instanceof Double) { 
                 int k = (int) key / 1;
                 k += (int) key % 1;
                 return k;
-            } else if (key instanceof String) { // verifica se a chave é uma string
+            } else if (key instanceof String) { 
                 int k = 0;
                 for (int i = 0; i < ((String) key).length(); i++)
                     k += ((String) key).charAt(i) * Math.pow(11, i);
@@ -37,7 +42,7 @@ public class HashTable<K, V> {
         buckets = new SimpleLinkedList[dim];
     }
 
-    // método responsável por converter o hash em um valor válido para a tabela
+    // método responsável por converter o hash para um valor válido para a tabela
     private int compress(int hash) {
         hash = Math.abs(hash);
         double a = (Math.sqrt(5) - 1) / 2;
@@ -93,7 +98,7 @@ public class HashTable<K, V> {
         }
     }
 
-    // método para adicionar ou atualizar um valor na tabela (como put do HashMap)
+    // método para adicionar ou actualizar um valor na tabela
     public void put(K key, V value) {
         resizeTable();
         Entry<K, V> newElement = new Entry<>(key, value);
@@ -104,7 +109,7 @@ public class HashTable<K, V> {
         }
 
         try {
-            // Se já existe uma entrada com a mesma chave, removemos a antiga
+            
             for (int i = 1; i <= buckets[idx].length(); i++) {
                 Entry<K, V> aux = buckets[idx].get(i);
                 if (aux.key().equals(key)) {
@@ -119,7 +124,7 @@ public class HashTable<K, V> {
         }
     }
 
-    // método para obter um valor associado a uma chave (como get do HashMap)
+    // método para obter um valor associado a uma chave
     public V get(K key) {
         int idx = compress(Entry.rawHash(key));
         if (buckets[idx] == null)
@@ -137,7 +142,7 @@ public class HashTable<K, V> {
         return null;
     }
 
-    // método para remover um par chave-valor (como remove do HashMap)
+    // método para remover um par chave-valor
     public boolean remove(K key) {
         int idx = compress(Entry.rawHash(key));
 
@@ -160,17 +165,46 @@ public class HashTable<K, V> {
         return false;
     }
 
-    // método para verificar se a chave existe (como containsKey do HashMap)
+    // método para verificar se a chave existe
     public boolean containsKey(K key) {
         return get(key) != null;
     }
 
-    // método para obter o número de elementos na tabela
+    
     public int size() {
         return nSlots;
     }
+    
+    
+     
+      
+     public SimpleLinkedList<V> values() {
+    SimpleLinkedList<V> values = new SimpleLinkedList<>();
+    
+    // Iterar sobre todos os "buckets" da tabela hash
+    for (int i = 0; i < buckets.length; i++) {
+        if (buckets[i] != null) {
+            // Iterar sobre os elementos dentro de cada "bucket"
+            for (int j = 1; j <= buckets[i].length(); j++) {
+                try {
+                  
+                    Entry<K, V> entry = buckets[i].get(j);
+                    
+                    
+                    if (entry.value() != null) {
+                        values.insert(entry.value());  
+                    }
+                } catch (IlligalHeadCallException | IlligalTailCallException e) {
+                    e.printStackTrace();  
+                }
+            }
+        }
+    }
 
-    // método de impressão da tabela
+    return values;
+}
+
+    
     public void printTable() {
         for (int i = 0; i < buckets.length; i++) {
             System.out.print("[" + i + "] ");
