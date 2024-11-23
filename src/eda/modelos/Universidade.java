@@ -21,6 +21,10 @@ public class Universidade {
         return false;
     }
 
+    public int listarCursos(){
+        return cursos.size();
+    }
+    
     public boolean criarDisciplina(String nomeDisciplina, int ects, DoubleLinkedList<Topico> topicos, String nomeCurso, int semestre, boolean obrigatoria) throws IlligalHeadCallException, IlligalTailCallException {
         nomeCurso = nomeCurso.toLowerCase();
         if (!cursos.containsKey(nomeCurso)) {

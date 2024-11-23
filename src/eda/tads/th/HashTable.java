@@ -98,6 +98,7 @@ public class HashTable<K, V> {
         }
     }
 
+    int g = 0;
     // método para adicionar ou actualizar um valor na tabela
     public void put(K key, V value) {
         resizeTable();
@@ -106,19 +107,25 @@ public class HashTable<K, V> {
         if (buckets[idx] == null) {
             buckets[idx] = new SimpleLinkedList<>();
             nSlots++;
+            
         }
 
         try {
-            
-            for (int i = 1; i <= buckets[idx].length(); i++) {
+            int i;
+            for (i = 1; i <= buckets[idx].length(); i++) {
                 Entry<K, V> aux = buckets[idx].get(i);
                 if (aux.key().equals(key)) {
-                    buckets[idx].remove(i);
+                    //buckets[idx].remove(i);
+                    //buckets[idx].insert(newElement);
                     break;
                 }
+                
             }
+            if(i>buckets[idx].length())
+                buckets[idx].insert(newElement);
+            
             // Inserimos a nova entrada
-            buckets[idx].insert(newElement);
+            
         } catch (IlligalHeadCallException | IlligalTailCallException e) {
             e.printStackTrace();
         }
@@ -172,7 +179,17 @@ public class HashTable<K, V> {
 
     
     public int size() {
-        return nSlots;
+        //System.err.println(buckets.length);
+        int soma = 0;
+         for (int i = 0; i < buckets.length; i++) {
+             if(buckets[i] != null){
+               soma += buckets[i].length();   
+             }
+             
+        }
+         
+        
+        return soma;
     }
     
     

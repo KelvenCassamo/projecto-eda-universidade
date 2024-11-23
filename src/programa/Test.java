@@ -4,42 +4,49 @@
  */
 package programa;
 
-import eda.modelos.Curso;
-import eda.tads.listas.IlligalHeadCallException;
-import eda.tads.listas.SimpleLinkedList;
-import eda.tads.th.HashTable;
-import eda.tads.th.IlligalTailCallException;
+import eda.file.FileUtil;
+import eda.modelos.Universidade;
+import eda.utils.Interpretador;
 
 
-/**
- *
- * @author Cassamo
- */
 public class Test {
     
-    public static void main(String[] args) throws IlligalTailCallException {
-         HashTable<String, Curso> cursos = new HashTable<>();
-        
-        // Adicionando alguns cursos à tabela
-        cursos.put("curso1", new Curso("Curso 1"));
-        cursos.put("curso2", new Curso("Curso 2"));
-        
-        // Obtendo e exibindo os valores (cursos) armazenados na tabela
-        SimpleLinkedList<Curso> listaDeCursos = cursos.values();
-        
-        // Exibindo os cursos
-        for (int i = 1; i <= listaDeCursos.length(); i++) {
-            try {
-                Curso curso = listaDeCursos.get(i);
-                System.out.println("Curso: " + curso.getNome());
-            } catch (IlligalHeadCallException | eda.tads.listas.IlligalTailCallException e) {
-                e.printStackTrace();
+    public static void main(String[] args){
+        FileUtil fileUtil = new FileUtil();
+        String lines[] = fileUtil.read("contents/fich.in.txt");
+       Universidade universidade = new Universidade();
+       System.out.println("Adicionar cursos:");
+       int count = 0;
+       int total = 0;
+       
+        for (String line : lines) {
+            if(Interpretador.isAddCourseSyntax(line)){
+                 
+                String nome_curso = Interpretador.getCourseName(line);
+                //print(nome_curso);
+                if(universidade.adicionarCurso(nome_curso)){
+                   count++; 
+                }
+                
+                total++;
+               
             }
+            
+           
         }
         
         
+        System.out.println("Fim do Adicionar cursos");
+        System.out.println("Cursos adicionados: "+count+" dos "+total+" disponiveis!");
+        
+        print(universidade.listarCursos());
         
         
     }
+    
+    
+   static void print(Object o){
+       System.out.println(o);
+   }
     
 }
