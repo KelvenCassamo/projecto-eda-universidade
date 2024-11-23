@@ -12,19 +12,25 @@ import eda.utils.Interpretador;
 
 public class Test {
 
+   private static String output = "";
+
     public static void main(String[] args) {
-        FileUtil fileUtil = new FileUtil();
-        String lines[] = fileUtil.read("contents/fich.in.txt");
+
+        FileUtil saida = new FileUtil();
+        String lines_saida[] = saida.read("contents/fich.out");
+        FileUtil entrada = new FileUtil();
+        String lines_entrada[] = entrada.read("contents/fich.in");
         Universidade universidade = new Universidade();
-        testarAddCursos(lines, universidade);
+         testarAddCursos(lines_entrada, universidade);
+        /*print(universidade.getCursos().get("c653"));
+        removerCursos(lines_entrada, universidade);
         print(universidade.getCursos().get("c653"));
-        removerCursos(lines, universidade);
-        print(universidade.getCursos().get("c653"));
+         */
+        
+        print(lines_saida.length);
        
         
-
-
-// universidade.getCursos().printTable();
+        saida.write(output, "contents/fich.kespar");
         
         
     }
@@ -37,10 +43,16 @@ public class Test {
         for (String line : lines) {
             if (Interpretador.isAddCourseSyntax(line)) {
 
-                String nome_curso = Interpretador.getCourseName(line);
+                String nome_curso = Interpretador.getCCValue(line);
                 //print(nome_curso);
                 if (universidade.adicionarCurso(nome_curso)) {
                     count++;
+                    
+                    appendOutput("Criacao de curso com sucesso."+"\n\n");
+
+                }
+                else{
+                   appendOutput("Curso existente."+"\n\n");
                 }
 
                 total++;
@@ -54,21 +66,20 @@ public class Test {
 
         print(universidade.getCursos().size());
     }
+
     static void removerCursos(String[] lines, Universidade universidade) {
         System.out.println("Remover cursos:");
         int count = 0;
         int total = universidade.getCursos().size();
 
         for (String line : lines) {
-            if (Interpretador.isAddCourseSyntax(line)) {
+            if (Interpretador.isRemoveCourseSyntax(line)) {
 
-                String nome_curso = Interpretador.getCourseName(line);
-                //print(nome_curso);
-                if (universidade.adicionarCurso(nome_curso)) {
+                String nome_curso = Interpretador.getRCValue(line);
+                print(nome_curso);
+                if (universidade.removerCurso(nome_curso)) {
                     count++;
                 }
-
-               
 
             }
 
@@ -79,6 +90,7 @@ public class Test {
 
         print(universidade.getCursos().size());
     }
+
     static void testarAddDisciplia(String[] lines, Universidade universidade) {
         System.out.println("Adicionar cursos:");
         int count = 0;
@@ -87,7 +99,7 @@ public class Test {
         for (String line : lines) {
             if (Interpretador.isAddCourseSyntax(line)) {
 
-                String nome_curso = Interpretador.getCourseName(line);
+                String nome_curso = Interpretador.getCCValue(line);
                 //print(nome_curso);
                 if (universidade.adicionarCurso(nome_curso)) {
                     count++;
@@ -109,4 +121,7 @@ public class Test {
         System.out.println(o);
     }
 
+    static void appendOutput(String _new) {
+        output = output+ _new;
+    }
 }

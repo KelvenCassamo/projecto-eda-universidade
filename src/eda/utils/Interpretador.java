@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class Interpretador {
     
     
-    //Verifiacar se é um comando  do Curso
+    //Verifiacar se é um comando  de adicionar Curso
    public static boolean isAddCourseSyntax(String line){
        Pattern patt = Pattern.compile("CC\\s*(.*)");
        Matcher matcher = patt.matcher(line);
@@ -20,9 +20,31 @@ public class Interpretador {
        
    }
    
-   //Obter o nome do curso a partir do comando
-   public static String getCourseName(String line){
+   //Verifiacar se é um comando  de renover Curso
+   public static boolean isRemoveCourseSyntax(String line){
+       Pattern patt = Pattern.compile("RC\\s*(.*)");
+       Matcher matcher = patt.matcher(line);
+      
+       return matcher.matches();
+       
+   }
+   
+   //Obter valor do comando CC
+   public static String getCCValue(String line){
        Pattern patt = Pattern.compile("CC\\s*(.*)");
+       Matcher matcher = patt.matcher(line);
+       String result = null;
+       if(matcher.matches()){
+           result = matcher.group(1);
+       }
+       
+       return result;
+       
+   }
+   
+   //Obter valor do comando RC
+   public static String getRCValue(String line){
+       Pattern patt = Pattern.compile("RC\\s*(.*)");
        Matcher matcher = patt.matcher(line);
        String result = null;
        if(matcher.matches()){

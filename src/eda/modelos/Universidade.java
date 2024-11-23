@@ -23,8 +23,8 @@ public class Universidade {
     
      public boolean removerCurso(String nome) {
         nome = nome.toLowerCase();
-        if (!cursos.containsKey(nome)) {
-            cursos.put(nome, new Curso(nome));
+        if (cursos.containsKey(nome)) {
+            cursos.remove(nome);
             return true;
         }
         return false;
