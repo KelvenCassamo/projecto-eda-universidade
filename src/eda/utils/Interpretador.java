@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 public class Interpretador {
     
     
+    //Verifiacar se é um comando  do Curso
    public static boolean isAddCourseSyntax(String line){
        Pattern patt = Pattern.compile("CC\\s*(.*)");
        Matcher matcher = patt.matcher(line);
@@ -19,6 +20,7 @@ public class Interpretador {
        
    }
    
+   //Obter o nome do curso a partir do comando
    public static String getCourseName(String line){
        Pattern patt = Pattern.compile("CC\\s*(.*)");
        Matcher matcher = patt.matcher(line);

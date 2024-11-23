@@ -20,10 +20,21 @@ public class Universidade {
         }
         return false;
     }
-
-    public int listarCursos(){
-        return cursos.size();
+    
+     public boolean removerCurso(String nome) {
+        nome = nome.toLowerCase();
+        if (!cursos.containsKey(nome)) {
+            cursos.put(nome, new Curso(nome));
+            return true;
+        }
+        return false;
     }
+
+    public HashTable<String, Curso> getCursos(){
+       
+        return this.cursos;
+    }
+    
     
     public boolean criarDisciplina(String nomeDisciplina, int ects, DoubleLinkedList<Topico> topicos, String nomeCurso, int semestre, boolean obrigatoria) throws IlligalHeadCallException, IlligalTailCallException {
         nomeCurso = nomeCurso.toLowerCase();
