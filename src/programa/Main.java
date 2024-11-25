@@ -11,7 +11,7 @@ import eda.tads.listas.SimpleLinkedList;
 public class Main {
 
     public static void main(String[] args) throws IlligalHeadCallException, IlligalTailCallException {
-        System.out.println("Hora da verdade! Será que vai funcionar? kk!\n\n");
+        System.out.println("");
         Universidade universidade = new Universidade();
 
         // Adiciona cursos

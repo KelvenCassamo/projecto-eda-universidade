@@ -19,6 +19,14 @@ public class Interpretador {
        return matcher.matches();
        
    }
+   public static boolean isAddDisciplineSyntax(String line){
+       Pattern patt = Pattern.compile("CC\\s*(.*)");
+       Matcher matcher = patt.matcher(line);
+      
+       return matcher.matches();
+       
+   }
+   
    
    //Verifiacar se é um comando  de renover Curso
    public static boolean isRemoveCourseSyntax(String line){

@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs:
+ * Click nbfs:
  */
 package eda.file;
 
@@ -17,15 +17,15 @@ public class FileUtil {
     }
     
     public String[] read(String path) {
-        String[] lines = new String[10]; // Array inicial com tamanho fixo
+        String[] lines = new String[10]; 
         int size = 0;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                // Redimensionar array se necessário
+                
                 if (size == lines.length) {
-                    lines = resizeArray(lines, lines.length * 2); // Dobra o tamanho do array
+                    lines = resizeArray(lines, lines.length * 2); 
                 }
                 lines[size] = line;
                 size++;
@@ -34,7 +34,7 @@ public class FileUtil {
             System.err.println("Erro ao ler o arquivo: " + e.getMessage());
         }
 
-        // Ajustar o array ao tamanho exato
+        
         return resizeArray(lines, size);
     }
 

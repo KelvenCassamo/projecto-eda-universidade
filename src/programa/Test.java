@@ -27,10 +27,10 @@ public class Test {
         print(universidade.getCursos().get("c653"));
          */
         
-        print(lines_saida.length);
+        //print(lines_saida.length);
        
         
-        saida.write(output, "contents/fich.kespar");
+        saida.write(output, "contents/fichout.txt");
         
         
     }
@@ -39,7 +39,7 @@ public class Test {
         System.out.println("Adicionar cursos:");
         int count = 0;
         int total = 0;
-
+        int num_cursos_duplicados = 0;
         for (String line : lines) {
             if (Interpretador.isAddCourseSyntax(line)) {
 
@@ -52,6 +52,7 @@ public class Test {
 
                 }
                 else{
+                    num_cursos_duplicados++;
                    appendOutput("Curso existente."+"\n\n");
                 }
 
@@ -63,8 +64,8 @@ public class Test {
 
         System.out.println("Fim do Adicionar cursos");
         System.out.println("Cursos adicionados: " + count + " dos " + total + " disponiveis!");
-
-        print(universidade.getCursos().size());
+        System.out.println("Detectamos: " + num_cursos_duplicados + " cursos duplicado!");
+       // print(universidade.getCursos().size());
     }
 
     static void removerCursos(String[] lines, Universidade universidade) {
@@ -92,7 +93,7 @@ public class Test {
     }
 
     static void testarAddDisciplia(String[] lines, Universidade universidade) {
-        System.out.println("Adicionar cursos:");
+        System.out.println("Adicionar disciplinas:");
         int count = 0;
         int total = 0;
 

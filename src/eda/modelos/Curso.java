@@ -1,4 +1,3 @@
-
 package eda.modelos;
 
 import eda.tads.listas.IlligalHeadCallException;
@@ -13,7 +12,7 @@ public class Curso {
     private SimpleLinkedList<Disciplina> disciplinas;
 
     public Curso(String nome) {
-        this.nome = nome.toLowerCase(); 
+        this.nome = nome.toLowerCase();
         this.disciplinas = new SimpleLinkedList<>();
     }
 
@@ -23,13 +22,16 @@ public class Curso {
 
     public boolean adicionarDisciplina(Disciplina disciplina) throws IlligalHeadCallException, IlligalTailCallException {
         // Verificar se a disciplina já existe
-        if (disciplinas.find(disciplina) == -1) {  
+        if (disciplinas.find(disciplina) == -1) {
             disciplinas.insert(disciplina);
             return true;
         }
         return false;
     }
 
+    /*  public boolean removerDisciplina(Disciplina disciplina) {
+        return disciplinas.remove(disciplina);
+    }*/
     public SimpleLinkedList<Disciplina> getDisciplinas() {
         return disciplinas;
     }
