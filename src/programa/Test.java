@@ -28,7 +28,7 @@ public class Test {
          */
         
         //print(lines_saida.length);
-       
+       //print(lines_saida.length);
         
         saida.write(output, "contents/fichout.txt");
         
