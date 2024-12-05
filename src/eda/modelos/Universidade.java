@@ -36,10 +36,11 @@ public class Universidade {
     }
     
     
-    public boolean criarDisciplina(String nomeDisciplina, int ects, DoubleLinkedList<Topico> topicos, String nomeCurso, int semestre, boolean obrigatoria) throws IlligalHeadCallException, IlligalTailCallException {
+    public boolean criarDisciplina(String nomeDisciplina, double ects, DoubleLinkedList<Topico> topicos, String nomeCurso, int semestre, boolean obrigatoria) throws IlligalHeadCallException, IlligalTailCallException {
         nomeCurso = nomeCurso.toLowerCase();
+      
         if (!cursos.containsKey(nomeCurso)) {
-            System.out.println("Curso '" + nomeCurso + "' não encontrado!");
+           // System.out.println("Curso '" + nomeCurso + "' não encontrado!");
             return false;
         }
         Disciplina novaDisciplina = new Disciplina(nomeDisciplina, ects, topicos, semestre, obrigatoria);

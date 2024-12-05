@@ -12,27 +12,82 @@ import eda.utils.Interpretador;
 
 public class Test {
 
-   private static String output = "";
+    private static String output = "";
 
     public static void main(String[] args) {
 
         FileUtil saida = new FileUtil();
-        String lines_saida[] = saida.read("contents/fich.out");
+        String lines_saida[] ={};
+      //  String lines_saida[] = saida.read("contents/fich.out");
         FileUtil entrada = new FileUtil();
-        String lines_entrada[] = entrada.read("contents/fich.in");
+      //  String lines_entrada[] = entrada.read("contents/fich.in");
+      String lines_entrada[] = {};
         Universidade universidade = new Universidade();
-         testarAddCursos(lines_entrada, universidade);
+        test(lines_entrada, universidade);
         /*print(universidade.getCursos().get("c653"));
         removerCursos(lines_entrada, universidade);
         print(universidade.getCursos().get("c653"));
          */
-        
+
         //print(lines_saida.length);
-       
-        
+        print(universidade.getCursos().size());
+        //print(universidade.getCursos().containsKey("c568"));
         saida.write(output, "contents/fichout.txt");
-        
-        
+
+    }
+
+    static void test(String[] lines, Universidade universidade) {
+        System.out.println("Adicionar cursos:");
+        int total_add = 0;
+        int total_remove = 0;
+        int total_courses = 0;
+        int num_cursos_duplicados = 0;
+        int num_cursos_nao_removidos = 0;
+        for (String line : lines) {
+            if (Interpretador.isAddCourseSyntax(line)) {
+
+                String nome_curso = Interpretador.getCCValue(line).toLowerCase();
+                //print(nome_curso);
+                if (universidade.adicionarCurso(nome_curso)) {
+                    total_add++;
+                    //print(nome_curso+" adicionado!");
+                    appendOutput("Criacao de curso com sucesso." + "\n\n");
+
+                } else {
+                    num_cursos_duplicados++;
+                    appendOutput("Curso existente." + "\n\n");
+                }
+
+                total_courses++;
+
+            }
+
+            if (Interpretador.isRemoveCourseSyntax(line)) {
+
+                String nome_curso = Interpretador.getRCValue(line).toLowerCase();
+                //print(nome_curso);
+                if (universidade.getCursos().containsKey(nome_curso)) {
+                    total_remove++;
+
+                    appendOutput("Remocao de curso com sucesso." + "\n\n");
+
+                } else {
+                    num_cursos_nao_removidos++;
+                    appendOutput("Curso inexistente." + "\n\n");
+                }
+
+              
+
+            }
+
+        }
+
+        System.out.println("Fim do Loop");
+        System.out.println("Cursos adicionados: " + total_add + " dos " + total_courses + " disponiveis!");
+        System.out.println("Detectamos: " + num_cursos_duplicados + " cursos duplicado!");
+         System.out.println("Cursos removido: " + total_remove + " dos " + total_courses + " disponiveis!");
+        System.out.println("Detectamos: " + num_cursos_nao_removidos + " cursos não removidos por não existirem.");
+        // print(universidade.getCursos().size());
     }
 
     static void testarAddCursos(String[] lines, Universidade universidade) {
@@ -47,13 +102,12 @@ public class Test {
                 //print(nome_curso);
                 if (universidade.adicionarCurso(nome_curso)) {
                     count++;
-                    
-                    appendOutput("Criacao de curso com sucesso."+"\n\n");
 
-                }
-                else{
+                    appendOutput("Criacao de curso com sucesso." + "\n\n");
+
+                } else {
                     num_cursos_duplicados++;
-                   appendOutput("Curso existente."+"\n\n");
+                    appendOutput("Curso existente." + "\n\n");
                 }
 
                 total++;
@@ -65,7 +119,7 @@ public class Test {
         System.out.println("Fim do Adicionar cursos");
         System.out.println("Cursos adicionados: " + count + " dos " + total + " disponiveis!");
         System.out.println("Detectamos: " + num_cursos_duplicados + " cursos duplicado!");
-       // print(universidade.getCursos().size());
+        // print(universidade.getCursos().size());
     }
 
     static void removerCursos(String[] lines, Universidade universidade) {
@@ -123,6 +177,6 @@ public class Test {
     }
 
     static void appendOutput(String _new) {
-        output = output+ _new;
+        output = output + _new;
     }
 }

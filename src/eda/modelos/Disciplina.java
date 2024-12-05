@@ -11,12 +11,12 @@ import java.util.Objects;
 public class Disciplina {
 
     private String nome;
-    private int ects;
+    private double ects;
     private DoubleLinkedList<Topico> topicos; // Alterado para DoubleLinkedList
     private int semestre;
     private boolean obrigatoria;
 
-    public Disciplina(String nome, int ects, DoubleLinkedList<Topico> topicos, int semestre, boolean obrigatoria) {
+    public Disciplina(String nome, double ects, DoubleLinkedList<Topico> topicos, int semestre, boolean obrigatoria) {
         this.nome = nome.toLowerCase();  // Ignora maiúsculas/minúsculas
         this.ects = ects;
         this.topicos = topicos;
@@ -54,6 +54,13 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return nome + " (" + ects + " ECTS, " + (obrigatoria ? "Obrigatória" : "Opcional") + ", Semestre " + semestre + ")";
+        return "Disciplina{" +
+                   "semestre=" + semestre +
+                   ", tipo=" + (obrigatoria == true ? "Obrigatória" : "Opcional") +
+                   ", curso='" + nome + '\'' +
+                   ", creditos=" + ects +
+                   ", nome='" + nome + '\'' +
+                   ", topicos=" + topicos +
+                   '}';
     }
 }

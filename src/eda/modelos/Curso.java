@@ -28,6 +28,16 @@ public class Curso {
         }
         return false;
     }
+    
+    //Verificar se a disciplina existe
+    public boolean existeDisciplina(Disciplina disciplina) throws IlligalHeadCallException, IlligalTailCallException {
+        // Verificar se a disciplina já existe
+        if (disciplinas.find(disciplina) == -1) {
+            disciplinas.insert(disciplina);
+            return true;
+        }
+        return false;
+    }
 
     /*  public boolean removerDisciplina(Disciplina disciplina) {
         return disciplinas.remove(disciplina);
