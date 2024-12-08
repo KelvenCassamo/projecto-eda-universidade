@@ -29,7 +29,7 @@ public class Curso {
         return false;
     }
 
-    //Verificar se a disciplina existe
+   
     public boolean existeDisciplina(Disciplina disciplina) throws IlligalHeadCallException, IlligalTailCallException {
         // Verificar se a disciplina já existe
         if (disciplinas.find(disciplina) == -1) {
@@ -49,18 +49,18 @@ public class Curso {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
-            return true; // Compara referência
+            return true;
         }
         if (obj == null || getClass() != obj.getClass()) {
-            return false; // Verifica classe
+            return false; 
         }
         Curso curso = (Curso) obj;
-        return nome.equals(curso.nome); // Compara nomes (atributo único)
+        return nome.equals(curso.nome);
     }
 
     @Override
     public int hashCode() {
-        return nome.hashCode(); // Gera hash baseado no nome
+        return nome.hashCode(); 
     }
 
 }

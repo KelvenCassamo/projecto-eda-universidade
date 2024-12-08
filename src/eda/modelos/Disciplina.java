@@ -17,7 +17,7 @@ public class Disciplina {
     private boolean obrigatoria;
 
     public Disciplina(String nome, double ects, DoubleLinkedList<Topico> topicos, int semestre, boolean obrigatoria) {
-        this.nome = nome.toLowerCase();  // Ignora maiúsculas/minúsculas
+        this.nome = nome.toLowerCase();  
         this.ects = ects;
         this.topicos = topicos;
         this.semestre = semestre;
@@ -52,7 +52,7 @@ public class Disciplina {
         this.obrigatoria = obrigatoria;
     }
 
-    public DoubleLinkedList<Topico> getTopicos() { // Alterado para DoubleLinkedList
+    public DoubleLinkedList<Topico> getTopicos() { 
         return topicos;
     }
 
