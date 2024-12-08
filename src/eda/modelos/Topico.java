@@ -21,9 +21,12 @@ public class Topico {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
+              System.out.println("numm");
             return false;
+          
         }
         Topico topico = (Topico) o;
+        
         return Objects.equals(nome, topico.nome);
     }
 

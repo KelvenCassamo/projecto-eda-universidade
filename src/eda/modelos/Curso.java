@@ -28,12 +28,12 @@ public class Curso {
         }
         return false;
     }
-    
+
     //Verificar se a disciplina existe
     public boolean existeDisciplina(Disciplina disciplina) throws IlligalHeadCallException, IlligalTailCallException {
         // Verificar se a disciplina já existe
         if (disciplinas.find(disciplina) == -1) {
-            disciplinas.insert(disciplina);
+           
             return true;
         }
         return false;
@@ -45,4 +45,22 @@ public class Curso {
     public SimpleLinkedList<Disciplina> getDisciplinas() {
         return disciplinas;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true; // Compara referência
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false; // Verifica classe
+        }
+        Curso curso = (Curso) obj;
+        return nome.equals(curso.nome); // Compara nomes (atributo único)
+    }
+
+    @Override
+    public int hashCode() {
+        return nome.hashCode(); // Gera hash baseado no nome
+    }
+
 }

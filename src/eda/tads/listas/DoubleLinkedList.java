@@ -67,6 +67,10 @@ public class DoubleLinkedList<T> {
     private Node end() {
         return tail;
     }
+    
+    public boolean isEmpty(){
+        return length() == 0;
+    }
 
     public T next(int p) throws IlligalTailCallException {
         if (p < 1 || p >= nElements)  // Verificado para <=

@@ -12,7 +12,7 @@ public class FileUtil {
     public FileUtil() {
     }
 
-    // Abre o arquivo e prepara o leitor
+    
     public void openFile(String path) {
         try {
             bufferedReader = new BufferedReader(new FileReader(path));
@@ -21,7 +21,7 @@ public class FileUtil {
         }
     }
 
-    // Lê uma linha do arquivo
+    
     public String readNextLine() {
         try {
             return bufferedReader.readLine();
@@ -31,7 +31,7 @@ public class FileUtil {
         }
     }
 
-    // Fecha o arquivo
+    
     public void closeFile() {
         try {
             if (bufferedReader != null) {
@@ -42,7 +42,7 @@ public class FileUtil {
         }
     }
 
-    // Método de escrita no arquivo
+    
     public void write(String content, String path) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
             bufferedWriter.write(content);

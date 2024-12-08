@@ -12,7 +12,7 @@ public class Disciplina {
 
     private String nome;
     private double ects;
-    private DoubleLinkedList<Topico> topicos; // Alterado para DoubleLinkedList
+    private DoubleLinkedList<Topico> topicos; 
     private int semestre;
     private boolean obrigatoria;
 
@@ -28,6 +28,30 @@ public class Disciplina {
         return nome;
     }
 
+    public double getEcts() {
+        return ects;
+    }
+
+    public void setEcts(double ects) {
+        this.ects = ects;
+    }
+
+    public int getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(int semestre) {
+        this.semestre = semestre;
+    }
+
+    public boolean isObrigatoria() {
+        return obrigatoria;
+    }
+
+    public void setObrigatoria(boolean obrigatoria) {
+        this.obrigatoria = obrigatoria;
+    }
+
     public DoubleLinkedList<Topico> getTopicos() { // Alterado para DoubleLinkedList
         return topicos;
     }
@@ -35,16 +59,16 @@ public class Disciplina {
     @Override
     public boolean equals(Object o) {
         if (this == o) {
-            return true; 
+            return true;
         }
         if (o == null || getClass() != o.getClass()) {
-            return false; 
+            return false;
         }
-        Disciplina disciplina = (Disciplina) o; 
+        Disciplina disciplina = (Disciplina) o;
         return ects == disciplina.ects && semestre == disciplina.semestre
                 && obrigatoria == disciplina.obrigatoria
                 && Objects.equals(nome, disciplina.nome)
-                && Objects.equals(topicos, disciplina.topicos); 
+                && Objects.equals(topicos, disciplina.topicos);
     }
 
     @Override
@@ -54,13 +78,13 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" +
-                   "semestre=" + semestre +
-                   ", tipo=" + (obrigatoria == true ? "Obrigatória" : "Opcional") +
-                   ", curso='" + nome + '\'' +
-                   ", creditos=" + ects +
-                   ", nome='" + nome + '\'' +
-                   ", topicos=" + topicos +
-                   '}';
+        return "Disciplina{"
+                + "semestre=" + semestre
+                + ", tipo=" + (obrigatoria == true ? "Obrigatória" : "Opcional")
+                + ", curso='" + nome + '\''
+                + ", creditos=" + ects
+                + ", nome='" + nome + '\''
+                + ", topicos=" + topicos
+                + '}';
     }
 }
